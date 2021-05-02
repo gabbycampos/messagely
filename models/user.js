@@ -14,7 +14,7 @@ class User {
    */
 
   static async register({username, password, first_name, last_name, phone}) { 
-    try {
+    // try {
       let hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
 
       const result = await db.query(
@@ -30,9 +30,9 @@ class User {
           RETURNING username, password, first_name, last_name, phone`,
           [username, hashedPassword, first_name, last_name, phone]);
       return result.rows[0];
-    } catch(e) {
-      return next(err);
-    }
+    // } catch(e) {
+    //   return next(err);
+    // }
   }
 
   /** Authenticate: is this username/password valid? Returns boolean. */
